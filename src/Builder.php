@@ -29,9 +29,26 @@ class Builder
     // +----------------------------------------------------------------------+
     //  construction and managing object
     // +----------------------------------------------------------------------+
-    public function __construct()
-    {
 
+    /**
+     * @param null|OldInput $old
+     */
+    public function __construct( $old = null )
+    {
+        $this->old = $old;
+    }
+
+    /**
+     * @param $name
+     * @param $value
+     * @return array|mixed|string
+     */
+    public function getValue( $name, $value )
+    {
+        if ( $this->old && $val = $this->old->getOld( $name ) ) {
+            return $val;
+        }
+        return $value;
     }
 
     // +----------------------------------------------------------------------+
@@ -100,6 +117,7 @@ class Builder
      */
     public function textarea( $name, $value = null, $options = [ ] )
     {
+        $value = $this->getValue( $name, $value );
         return Input::textarea( $name, $value, $options );
     }
 
@@ -116,6 +134,7 @@ class Builder
         $name    = isset( $args[ 0 ] ) ? $args[ 0 ] : null;
         $value   = isset( $args[ 1 ] ) ? $args[ 1 ] : null;
         $options = isset( $args[ 2 ] ) ? $args[ 2 ] : [ ];
+        $value   = $this->getValue( $name, $value );
         $element = Input::forge( 'input', $name, $value, $options );
         $element->type( $method );
         return $element;
