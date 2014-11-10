@@ -13,7 +13,9 @@ class Form extends Tag
      */
     public static function open()
     {
-        return new self( 'form' );
+        $form = new self( 'form' );
+        $form->method( 'post' );
+        return $form;
     }
 
     /**
@@ -22,7 +24,7 @@ class Form extends Tag
     public static function close()
     {
         $self = new self('form');
-        return $self->closed();
+        return $self->closeTag();
     }
 
     /**

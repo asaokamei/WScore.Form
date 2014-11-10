@@ -1,6 +1,7 @@
 <?php
 namespace WScore\Form\Format;
 
+use WScore\Form\Form;
 use WScore\Form\Input;
 use WScore\Form\Lists;
 use WScore\Form\Tag;
@@ -25,5 +26,9 @@ class ToString
             }
             return FormInput::toString( $element );
         }
+        if( $element instanceof Form ) {
+            return FormForm::toString( $element );
+        }
+        throw new \InvalidArgumentException;
     }
 }

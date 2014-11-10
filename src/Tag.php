@@ -65,10 +65,18 @@ class Tag
     /**
      * @return $this
      */
-    public function closed()
+    public function closeTag()
     {
         $this->closed = true;
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isClosed()
+    {
+        return $this->closed;
     }
 
     // +----------------------------------------------------------------------+
