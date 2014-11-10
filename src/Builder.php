@@ -3,6 +3,7 @@ namespace WScore\Form;
 
 /**
  * Class Builder
+ *
  * @package WScore\Form
  *
  * @method Input text( $name, $value = null, $option = [ ] )
@@ -26,16 +27,25 @@ namespace WScore\Form;
  */
 class Builder
 {
+    /**
+     * @var null|OldInput
+     */
+    protected $old;
+
+    /**
+     * @var string
+     */
+    protected $token;
+
     // +----------------------------------------------------------------------+
     //  construction and managing object
     // +----------------------------------------------------------------------+
-
     /**
      * @param null|OldInput $old
      */
     public function __construct( $old = null )
     {
-        $this->old = $old;
+        $this->old   = $old;
     }
 
     /**
@@ -51,8 +61,8 @@ class Builder
     }
 
     /**
-     * @param $name
-     * @param $value
+     * @param string $name
+     * @param mixed  $value
      * @return array|mixed|string
      */
     public function getValue( $name, $value = null )
@@ -61,6 +71,15 @@ class Builder
             return $val;
         }
         return $value;
+    }
+
+    /**
+     * @param string $token
+     * @return string
+     */
+    public function setToken( $token )
+    {
+        return $this->token = $token;
     }
 
     // +----------------------------------------------------------------------+
@@ -80,6 +99,14 @@ class Builder
     public function close()
     {
         return Form::close();
+    }
+
+    /**
+     * @return Input
+     */
+    public function token()
+    {
+        return Input::hidden( '_token', $this->token );
     }
 
     // +----------------------------------------------------------------------+
