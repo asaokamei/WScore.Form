@@ -13,13 +13,13 @@ class FormList
     {
 
         $lists        = $element->getList();
-        $checkedValue = $element->getValue();
+        $checkedValue = (array) $element->getValue();
 
         $e = clone $element;
         $e->overwriteLists();
         $html = '';
         foreach ( $lists as $value => $label ) {
-            if ( $checkedValue == $value ) {
+            if ( in_array( $value, $checkedValue ) ) {
                 $html .= '  <li>' . $e->value( $value )->label( $label )->checked()->toString() . "</li>\n";
             }
             else {

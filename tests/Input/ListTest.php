@@ -68,12 +68,12 @@ TAG;
         $form = $this->getElement( 'checkbox', $name, $lists );
         $label1 = $lists['value-1'];
         $label2 = $lists['value-2'];
-        $form->value( 'value-1' );
+        $form->value( ['value-1', 'value-2'] );
         $html = <<<TAG
 <ul>
   <li><label><input type="checkbox" name="{$name}[]" value="value-1" id="$name-value-1" checked />
  $label1</label></li>
-  <li><label><input type="checkbox" name="{$name}[]" value="value-2" id="$name-value-2" />
+  <li><label><input type="checkbox" name="{$name}[]" value="value-2" id="$name-value-2" checked />
  $label2</label></li>
 </ul>
 TAG;
