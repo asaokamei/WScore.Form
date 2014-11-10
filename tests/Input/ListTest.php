@@ -97,4 +97,23 @@ TAG;
 TAG;
         $this->assertEquals( $html, (string) $form );
     }
+
+    /**
+     * @test
+     */
+    function select_multiple_element()
+    {
+        $form = $this->getElement( 'select', $name, $lists );
+        $form->multiple();
+        $label1 = $lists['value-1'];
+        $label2 = $lists['value-2'];
+        $form->value( 'value-1' );
+        $html = <<<TAG
+<select name="{$name}[]" id="$name" multiple>
+  <option value="value-1" selected>$label1</option>
+  <option value="value-2">$label2</option>
+</select>
+TAG;
+        $this->assertEquals( $html, (string) $form );
+    }
 }
