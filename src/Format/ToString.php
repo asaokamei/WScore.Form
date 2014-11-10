@@ -22,7 +22,7 @@ class ToString
         }
         if( $element instanceof Input ) {
             if( 'textarea' == $element->getTagName() ) {
-                return TextArea::toString( $element );
+                return FormTextArea::toString( $element );
             }
             return FormInput::toString( $element );
         }

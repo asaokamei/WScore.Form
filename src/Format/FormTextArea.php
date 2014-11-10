@@ -3,7 +3,7 @@ namespace WScore\Form\Format;
 
 use WScore\Form\Input;
 
-class TextArea
+class FormTextArea
 {
     /**
      * @param Input $element
