@@ -39,11 +39,23 @@ class Builder
     }
 
     /**
+     * @param array $old
+     * @return Builder
+     */
+    public static function forge( $old = [ ] )
+    {
+        if ( $old && is_array( $old ) ) {
+            $old = new OldInput( $old );
+        }
+        return new self( $old );
+    }
+
+    /**
      * @param $name
      * @param $value
      * @return array|mixed|string
      */
-    public function getValue( $name, $value )
+    public function getValue( $name, $value = null )
     {
         if ( $this->old && $val = $this->old->getOld( $name ) ) {
             return $val;
