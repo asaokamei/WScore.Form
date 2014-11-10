@@ -6,23 +6,24 @@ use WScore\Form\Lists;
 class FormList
 {
     /**
-     * @param Lists $e
+     * @param Lists $element
      * @return string
      */
-    public static function toString( $e )
+    public static function toString( $element )
     {
-        $element = clone $e;
 
         $lists        = $element->getList();
         $checkedValue = $element->getValue();
-        $element->lists( null );
+
+        $e = clone $element;
+        $e->overwriteLists();
         $html = '';
         foreach ( $lists as $value => $label ) {
             if ( $checkedValue == $value ) {
-                $html .= '  <li>' . $element->value( $value )->label( $label )->checked()->toString() . "</li>\n";
+                $html .= '  <li>' . $e->value( $value )->label( $label )->checked()->toString() . "</li>\n";
             }
             else {
-                $html .= '  <li>' . $element->value( $value )->label( $label )->checked( false )->toString() . "</li>\n";
+                $html .= '  <li>' . $e->value( $value )->label( $label )->checked( false )->toString() . "</li>\n";
             }
         }
         if ( $html ) {

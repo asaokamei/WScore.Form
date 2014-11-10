@@ -17,6 +17,11 @@ class Lists extends Input
     protected $list = array();
 
     /**
+     * @var bool       overwrite this to false for normal input element.
+     */
+    protected $isList = true;
+
+    /**
      * @var bool
      */
     protected $multiple = false;
@@ -37,7 +42,7 @@ class Lists extends Input
      */
     public static function radio( $name, $lists, $values=null )
     {
-        return static::make( $name, $lists, $values );
+        return static::make( 'input', $name, $lists, $values )->type( 'radio' );
     }
 
     /**
@@ -48,7 +53,7 @@ class Lists extends Input
      */
     public static function select( $name, $lists, $values=null )
     {
-        return static::make( $name, $lists, $values );
+        return static::make( 'select', $name, $lists, $values );
     }
 
     /**
@@ -59,7 +64,7 @@ class Lists extends Input
      */
     public static function checkbox( $name, $lists, $values=null )
     {
-        $element = static::make( $name, $lists, $values );
+        $element = static::make( 'input', $name, $lists, $values )->type( 'checkbox' );
         $element->asArray();
         return $element;
     }
@@ -70,9 +75,10 @@ class Lists extends Input
      * @param string|array $values
      * @return static
      */
-    protected static function make( $name, $lists, $values=null )
+    protected static function make( $tag, $name, $lists, $values=null )
     {
-        $element = new self( $name );
+        $element = new self( $tag );
+        $element->name( $name );
         $element->lists( $lists );
         if( $values ) {
             $element->value($values);
@@ -83,6 +89,20 @@ class Lists extends Input
     // +----------------------------------------------------------------------+
     //  setting up
     // +----------------------------------------------------------------------+
+    /**
+     * @param bool $isList
+     */
+    public function overwriteLists( $isList = false ) {
+        $this->isList = $isList;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isList() {
+        return $this->isList;
+    }
+
     /**
      * @param array $lists
      * @return $this

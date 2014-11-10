@@ -81,7 +81,11 @@ class Tag
     public function apply( $options )
     {
         foreach( $options as $name => $opt ) {
-            $this->$name( $opt );
+            if( is_numeric( $name ) ) {
+                $this->setAttribute( $opt, true );
+            } else {
+                $this->$name( $opt );
+            }
         }
         return $this;
     }

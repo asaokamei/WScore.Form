@@ -26,8 +26,6 @@ namespace WScore\Form;
  * @method static Input checkbox( $name = null, $value = null, $option = [ ] )
  * @method Input required(bool)
  * @method Input checked(bool)
- * @method Input width(string)
- * @method Input height(string)
  * @method Input max(int)
  * @method Input maxlength(int)
  * @method Input pattern(string)
@@ -40,7 +38,7 @@ namespace WScore\Form;
  */
 class Input extends Tag
 {
-    protected $type = 'text';
+    protected $type;
 
     protected $name;
 
@@ -63,7 +61,9 @@ class Input extends Tag
         $name    = $args[ 0 ];
         $value   = isset( $args[ 1 ] ) ? $args[ 1 ] : null;
         $options = isset( $args[ 2 ] ) ? $args[ 2 ] : [ ];
-        return static::forge( 'text', $name, $value, $options );
+        $element = static::forge( 'input', $name, $value, $options );
+        $element->type( $method );
+        return $element;
     }
 
     /**
@@ -153,6 +153,22 @@ class Input extends Tag
     public function imeOff()
     {
         return $this->style( 'ime-mode', 'inactive' );
+    }
+
+    /**
+     * @param string $width
+     * @return $this
+     */
+    public function width( $width ) {
+        return $this->style( 'width', $width );
+    }
+
+    /**
+     * @param string $height
+     * @return $this
+     */
+    public function height( $height ) {
+        return $this->style( 'height', $height );
     }
 
     // +----------------------------------------------------------------------+
