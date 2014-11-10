@@ -84,7 +84,7 @@ class Input extends Tag
      * @param array        $options
      * @return static
      */
-    protected static function forge( $tag, $name, $value, $options )
+    public static function forge( $tag, $name, $value, $options )
     {
         $element = new static( $tag );
         $element->name( $name );

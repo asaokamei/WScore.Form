@@ -1,6 +1,7 @@
 <?php
 namespace tests\Input;
 
+use WScore\Form\Builder;
 use WScore\Form\Input;
 use WScore\Form\Lists;
 
@@ -29,13 +30,14 @@ class ListTest extends \PHPUnit_Framework_TestCase
             'value-1' => 'label-'.mt_rand(1000,9999),
             'value-2' => 'label-'.mt_rand(1000,9999),
         ];
-        $form  = Lists::$type( $name, $lists, $option );
+        $builder = new Builder();
+        $form  = $builder->$type( $name, $lists, $option );
         return $form;
     }
 
     function test0()
     {
-        $form = $this->getElement( 'radio', $name, $value );
+        $form = $this->getElement( 'radioList', $name, $value );
         $this->assertEquals( 'WScore\Form\Lists', get_class( $form ) );
     }
 
@@ -44,7 +46,7 @@ class ListTest extends \PHPUnit_Framework_TestCase
      */
     function radio_element_with_list()
     {
-        $form = $this->getElement( 'radio', $name, $lists );
+        $form = $this->getElement( 'radioList', $name, $lists );
         $label1 = $lists['value-1'];
         $label2 = $lists['value-2'];
         $form->value( 'value-1' );
@@ -65,7 +67,7 @@ TAG;
      */
     function check_element_with_list()
     {
-        $form = $this->getElement( 'checkbox', $name, $lists );
+        $form = $this->getElement( 'checkList', $name, $lists );
         $label1 = $lists['value-1'];
         $label2 = $lists['value-2'];
         $form->value( ['value-1', 'value-2'] );

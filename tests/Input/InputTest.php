@@ -1,6 +1,7 @@
 <?php
 namespace tests\Input;
 
+use WScore\Form\Builder;
 use WScore\Form\Input;
 
 require_once( __DIR__.'/../autoloader.php' );
@@ -23,7 +24,8 @@ class InputTest extends \PHPUnit_Framework_TestCase
     {
         $name  = 'name-' . mt_rand( 1000, 9999 );
         $value = 'value-' . mt_rand( 1000, 9999 );
-        $form  = Input::$type( $name, $value, $option );
+        $builder = new Builder();
+        $form  = $builder->$type( $name, $value, $option );
         return $form;
     }
 

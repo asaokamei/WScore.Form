@@ -1,17 +1,24 @@
 <?php
 namespace tests\Input;
 
+use WScore\Form\Builder;
 use WScore\Form\Form;
 
 require_once( __DIR__.'/../autoloader.php' );
 
 class FormTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var Builder
+     */
+    protected $builder;
+
     function setup()
     {
         class_exists( 'WScore\Form\Input' );
         class_exists( 'WScore\Form\Form' );
         class_exists( 'WScore\Form\Format\FormList' );
+        $this->builder = new Builder();
     }
 
     /**
@@ -19,7 +26,7 @@ class FormTest extends \PHPUnit_Framework_TestCase
      */
     function Form_open_returns_form()
     {
-        $form = Form::open();
+        $form = $this->builder->open();
         $this->assertEquals( 'WScore\Form\Form', get_class( $form ) );
     }
 
@@ -28,7 +35,7 @@ class FormTest extends \PHPUnit_Framework_TestCase
      */
     function open_form_tag()
     {
-        $form = Form::open()->action('act.php')->uploader();
+        $form = $this->builder->open()->action('act.php')->uploader();
         $html = <<<END_TAG
 <form method="post" action="act.php" enctype="multipart/form-data" >
 
@@ -41,7 +48,7 @@ END_TAG;
      */
     function open_close_tag()
     {
-        $form = Form::close();
+        $form = $this->builder->close();
         $html = <<<END_TAG
 </form>
 END_TAG;

@@ -130,7 +130,7 @@ class Lists extends Input
      */
     public function multiple( $as = true )
     {
-        $this->setAttribute( 'multiple', true );
+        $this->setAttribute( 'multiple', $as );
         $this->asArray();
         return $this;
     }
