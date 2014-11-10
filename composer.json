@@ -1,0 +1,19 @@
+{
+    "name": "wscore/form",
+    "description": "generate HTML form elements.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Asao",
+            "email": "kamei@workspot.jp"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "WScore\\Form\\": "src/"
+        }
+    }
+}
