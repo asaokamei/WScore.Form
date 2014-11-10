@@ -71,9 +71,9 @@ TAG;
         $form->value( 'value-1' );
         $html = <<<TAG
 <ul>
-  <li><label><input type="checkbox" name="{$name}" value="value-1" id="$name-value-1" checked />
+  <li><label><input type="checkbox" name="{$name}[]" value="value-1" id="$name-value-1" checked />
  $label1</label></li>
-  <li><label><input type="checkbox" name="{$name}" value="value-2" id="$name-value-2" />
+  <li><label><input type="checkbox" name="{$name}[]" value="value-2" id="$name-value-2" />
  $label2</label></li>
 </ul>
 TAG;

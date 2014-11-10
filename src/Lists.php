@@ -152,7 +152,7 @@ class Lists extends Input
      */
     public function getName()
     {
-        if ( $this->multiple ) {
+        if ( $this->asArray ) {
             return $this->name . '[]';
         }
         return $this->name;
