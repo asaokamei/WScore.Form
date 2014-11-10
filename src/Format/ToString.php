@@ -14,6 +14,9 @@ class ToString
     public static function format( $element )
     {
         if( $element instanceof Lists && $element->isList() ) {
+            if( 'select' == $element->getTagName() ) {
+                return FormSelect::toString( $element );
+            }
             return FormList::toString( $element );
         }
         if( $element instanceof Input ) {
