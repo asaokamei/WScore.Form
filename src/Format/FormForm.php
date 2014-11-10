@@ -14,9 +14,9 @@ class FormForm
         if( $element->isClosed() ) {
             return self::close( $element );
         }
-        $html = FormInput::htmlProperty( $element, 'id', 'class', 'style' );
+        $html = ToString::htmlProperty( $element, 'id', 'class', 'style' );
         $html = '<' . $element->getTagName() . ' ' . $html . ' >' . "\n";
-        $html = FormInput::addLabel( $html, $element );
+        $html = ToString::addLabel( $html, $element );
         return $html;
     }
 

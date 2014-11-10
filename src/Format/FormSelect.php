@@ -23,10 +23,10 @@ class FormSelect
             }
         }
         if( $html ) {
-            $prop = FormInput::htmlProperty( $element, 'name', 'id', 'class', 'style' );
+            $prop = ToString::htmlProperty( $element, 'name', 'id', 'class', 'style' );
             $html = "<select {$prop}>" . "\n" . $html . '</select>';
         }
-        $html = FormInput::addLabel( $html, $element );
+        $html = ToString::addLabel( $html, $element );
         return $html;
     }
 

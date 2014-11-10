@@ -13,7 +13,7 @@ class TextArea
     {
         $tag  = $element->getTagName();
         $value = $element->getValue();
-        $prop = FormInput::htmlProperty( $element, 'name', 'id', 'class', 'style' );
+        $prop = ToString::htmlProperty( $element, 'name', 'id', 'class', 'style' );
         $html = "<{$tag} " . "{$prop}>{$value}</{$tag}>";
         return $html;
     }
