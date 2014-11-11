@@ -41,11 +41,9 @@ class Builder
     //  construction and managing object
     // +----------------------------------------------------------------------+
     /**
-     * @param null|OldInput $old
      */
-    public function __construct( $old = null )
+    public function __construct()
     {
-        $this->old   = $old;
     }
 
     /**
@@ -54,10 +52,9 @@ class Builder
      */
     public static function forge( $old = [ ] )
     {
-        if ( $old && is_array( $old ) ) {
-            $old = new OldInput( $old );
-        }
-        return new self( $old );
+        $self = new self( $old );
+        $self->setInput( $old );
+        return $self;
     }
 
     /**
@@ -82,6 +79,16 @@ class Builder
         return $this->token = $token;
     }
 
+    /**
+     * @param array|OldInput $old
+     */
+    public function setInput( $old )
+    {
+        if ( is_array( $old ) ) {
+            $old = new OldInput( $old );
+        }
+        $this->old   = $old;
+    }
     // +----------------------------------------------------------------------+
     //  open/close form
     // +----------------------------------------------------------------------+
